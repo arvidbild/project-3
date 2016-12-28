@@ -156,24 +156,33 @@ function function5(event) {
     
     if (nameField.value < 1) {
         event.preventDefault();
+        alert("You have to fill out the name field")
+
         }
     if (!validateactivity()) {
         event.preventDefault();
+        alert("You have to chose a activity")
+
     }
     if (ccnum.value.length >= 13 && ccnum.value.length <= 16) {
         return event;
     } else{
         event.preventDefault();
+        alert("You have to put in between 13 and 16 numbers as your card numberr")
+
         }
     if (zip.value.length == 5 ) {
         return event; 
     } else {
         event.preventDefault();
+        alert("You have to put in 5 numbers as your ZIP-code")
+
     }
      if (cvv.value.length == 3 ) {
         return event; 
     } else {
         event.preventDefault();
+        alert("You have to put in 3 numbers as a CVV number")
     }
     
 }
@@ -184,7 +193,3 @@ design.addEventListener("change",function2);
 activities.addEventListener("change",function3);
 payment.addEventListener("change",function4);
 button.addEventListener("click",function5);
-
-
-
-
