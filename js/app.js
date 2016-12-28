@@ -4,12 +4,12 @@ var design = document.getElementById("design");
 var color = document.getElementById("color");
 var activities = document.getElementsByClassName("activities")[0];
 var button = document.querySelector("button");
-
 var nameField = document.getElementById("name");
 var checkboxes = document.querySelectorAll(".activities input");
 var ccnum = document.getElementById("cc-num");
 var zip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
+
 
 //Function for the Jobrole.
 
@@ -136,9 +136,6 @@ var bitcoin = document.getElementsByTagName("p")[1];
         }
     }
 
-
-
-
 /* Credit card field should only accept a number between 13 and 16 digits
 
 The zipcode field should accept a 5-digit number
@@ -156,21 +153,30 @@ function validateactivity () {
 
 //Function for validation
 function function5(event) {
- 
+    
     if (nameField.value < 1) {
         event.preventDefault();
         }
     if (!validateactivity()) {
         event.preventDefault();
     }
-    if (ccnum.length >= 13 && ccnum.length <= 16) {
+    if (ccnum.value.length >= 13 && ccnum.value.length <= 16) {
         return event;
     } else{
-            event.preventDefault();
+        event.preventDefault();
         }
-
+    if (zip.value.length == 5 ) {
+        return event; 
+    } else {
+        event.preventDefault();
+    }
+     if (cvv.value.length == 3 ) {
+        return event; 
+    } else {
+        event.preventDefault();
+    }
+    
 }
-
 /// Eventlisteners 
 
 jobRole.addEventListener("change",function1);
@@ -178,12 +184,6 @@ design.addEventListener("change",function2);
 activities.addEventListener("change",function3);
 payment.addEventListener("change",function4);
 button.addEventListener("click",function5);
-
-
-
-
-
-
 
 
 
