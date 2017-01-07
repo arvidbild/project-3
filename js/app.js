@@ -1,15 +1,19 @@
 //Global variabels
 var jobRole = document.getElementById("title");
 var design = document.getElementById("design");
+var designlabel = document.querySelectorAll("label")[5];
 var color = document.getElementById("color");
 var activities = document.getElementsByClassName("activities")[0];
 var button = document.querySelector("button");
 var nameField = document.getElementById("name");
 var checkboxes = document.querySelectorAll(".activities input");
+var payment = document.getElementById("payment");
+var creditcard = document.getElementById("credit-card");
+var paypal = document.getElementsByTagName("p")[0];
+var bitcoin = document.getElementsByTagName("p")[1];  
 var ccnum = document.getElementById("cc-num");
 var zip = document.getElementById("zip");
 var cvv = document.getElementById("cvv");
-
 
 //Function for the Jobrole.
 
@@ -17,31 +21,47 @@ function function1() {
 
 var title = document.getElementById("title");
 var input = document.createElement("input");
-var label = document.createElement("label");     
-    
+var label = document.createElement("label");   
+
+input.setAttribute("id","other-title");
+label.innerHTML = "Your Job Role"; 
+        
     if (jobRole.value == "other") { 
         
         title.parentNode.appendChild(label);     
-        title.parentNode.appendChild(input);
-
-        input.setAttribute("id","other-title");
-        label.innerHTML = "Your Job Role";    
+        title.parentNode.appendChild(input);   
     }
+    
 }
                          
 //Function for the T-shirts
 function function2() {
+        
+color.style.display = "inline";
+designlabel.style.display = "block";    
     
-    if(design.value == "js puns") {
+    if(design.value === "js puns") {
+        for (var i = 0; i < color.length; i++) {
+            color[i].style.display = "inline"
+            }  
         for (var i = 3; i < color.length; i++) {
             color[i].style.display = "none"
             }        
-
-    } else if (design.value == "heart js") {
+        }
+     
+    if (design.value === "heart js") {
+        for (var i = 0; i < color.length; i++) {
+            color[i].style.display = "inline"
+            }  
         for (var i = 0; i < 3; i++) {
             color[i].style.display = "none";        
+            } 
+        } 
+
+    if (design.value === "Select Theme") {
+        color.style.display = "none";
+        designlabel.style.display = "none";
         }
-    }
 }
 
 
@@ -114,11 +134,6 @@ function function3 () {
 //function for payments
 function function4() {
 
-var payment = document.getElementById("payment");
-var creditcard = document.getElementById("credit-card");
-var paypal = document.getElementsByTagName("p")[0];
-var bitcoin = document.getElementsByTagName("p")[1];    
-    
     if (payment.value == "credit card" ) {
         creditcard.style.display = "block";
         paypal.style.display = "none";
@@ -133,7 +148,13 @@ var bitcoin = document.getElementsByTagName("p")[1];
         bitcoin.style.display = "block";
         creditcard.style.display = "none";
         paypal.style.display = "none";    
+        
+        } else if (payment.value == "select_method") {
+        bitcoin.style.display = "none";
+        creditcard.style.display = "none";
+        paypal.style.display = "none";     
         }
+        
     }
 
 /* Credit card field should only accept a number between 13 and 16 digits
@@ -164,27 +185,23 @@ function function5(event) {
         alert("You have to chose a activity")
 
     }
-    if (ccnum.value.length >= 13 && ccnum.value.length <= 16) {
-        return event;
-    } else{
-        event.preventDefault();
-        alert("You have to put in between 13 and 16 numbers as your card numberr")
-
-        }
-    if (zip.value.length == 5 ) {
-        return event; 
-    } else {
-        event.preventDefault();
-        alert("You have to put in 5 numbers as your ZIP-code")
-
-    }
-     if (cvv.value.length == 3 ) {
-        return event; 
-    } else {
-        event.preventDefault();
-        alert("You have to put in 3 numbers as a CVV number")
-    }
     
+    if (zip.value.length !== 5 ) {
+        event.preventDefault();
+        alert("You have to put in 5 numbers as your ZIP-code");
+        }
+    
+     if (cvv.value.length !== 3 ) {
+        event.preventDefault();
+        alert("You have to put in 3 numbers as a CVV number");
+        }
+        
+    if (ccnum.value.length >= 13 && ccnum.value.length <= 16) { 
+        return event; 
+    } else {
+        event.preventDefault();
+        alert("You have to put in between 13 and 16 numbers as your card numberr");
+        }
 }
 /// Eventlisteners 
 
@@ -193,3 +210,10 @@ design.addEventListener("change",function2);
 activities.addEventListener("change",function3);
 payment.addEventListener("change",function4);
 button.addEventListener("click",function5);
+ 
+color.style.display = "none";
+designlabel.style.display = "none";
+bitcoin.style.display = "none";
+creditcard.style.display = "none";
+paypal.style.display = "none";    
+
