@@ -6,6 +6,7 @@ var color = document.getElementById("color");
 var activities = document.getElementsByClassName("activities")[0];
 var button = document.querySelector("button");
 var nameField = document.getElementById("name");
+var email = document.getElementById("mail");
 var checkboxes = document.querySelectorAll(".activities input");
 var payment = document.getElementById("payment");
 var creditcard = document.getElementById("credit-card");
@@ -163,7 +164,7 @@ The zipcode field should accept a 5-digit number
 The CVV should only accept a number that is exactly 3 digits long
 */
 
-// funvtion looping thrue to find if activities is clicked
+// function looping thrue to find if activities is clicked
 function validateactivity () {
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
@@ -177,28 +178,32 @@ function function5(event) {
     
     if (nameField.value < 1) {
         event.preventDefault();
-        alert("You have to fill out the name field")
-
-        }
-    if (!validateactivity()) {
-        event.preventDefault();
-        alert("You have to chose a activity")
-
+        alert("You have to fill out the name field");
     }
     
-    if (zip.value.length !== 5 ) {
+    if (!email.value.includes("@") || !email.value.includes("."))  {
+        event.preventDefault();
+        alert("Please enter a valid email adress");
+    } 
+    
+    if (!validateactivity()) {
+        event.preventDefault();
+        alert("You have to chose a activity");
+    }
+    
+    if (zip.value.length !== 5 && payment.value == "credit card") {
         event.preventDefault();
         alert("You have to put in 5 numbers as your ZIP-code");
         }
     
-     if (cvv.value.length !== 3 ) {
+     if (cvv.value.length !== 3 && payment.value == "credit card" ) {
         event.preventDefault();
         alert("You have to put in 3 numbers as a CVV number");
         }
         
     if (ccnum.value.length >= 13 && ccnum.value.length <= 16) { 
         return event; 
-    } else {
+    } else if (payment.value == "credit card") {
         event.preventDefault();
         alert("You have to put in between 13 and 16 numbers as your card numberr");
         }
